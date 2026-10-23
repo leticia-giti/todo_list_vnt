@@ -1,30 +1,69 @@
 <!doctype html>
+<!-- Define o idioma principal da página como Português do Brasil para navegadores e leitores de tela -->
 <html lang="pt-BR">
 
 <head>
+	<!-- Define a codificação de caracteres como UTF-8 (permite acentos, emojis e caracteres especiais) -->
 	<meta charset="UTF-8">
+
+	<!-- Configura a responsividade para dispositivos móveis (ajusta a escala para a largura da tela) -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Título que aparece na aba do navegador -->
 	<title>Minha To-do List</title>
+
+	<!-- Importa o arquivo de estilos CSS externo -->
 	<link rel="stylesheet" href="style.css">
+
+	<!-- 
+		Importa o arquivo JavaScript externo.
+		O atributo 'defer' faz o script ser executado somente após todo o HTML ser processado pelo navegador,
+		garantindo que os elementos HTML já existam quando o JS tentar manipulá-los.
+	-->
 	<script src="script.js" defer></script>
 </head>
 
 <body>
+	<!-- Tag semântica <main> que representa o conteúdo principal da página -->
 	<main class="app">
+		<!-- Título principal da aplicação -->
 		<h1>Minha To-do List</h1>
+
+		<!-- Parágrafo com id para permitir que o JavaScript altere seu texto dinamicamente -->
 		<p id="mensagem">Organize uma tarefa por vez.</p>
 
+		<!-- 
+			Formulário para entrada de dados.
+			O formulário agrupa os campos e permite capturar o evento de "submit" (envio) pelo teclado (Enter) ou botão.
+		-->
 		<form id="form-tarefa">
+			<!-- 'for="nova-tarefa"' conecta a label ao input com id="nova-tarefa", melhorando a acessibilidade -->
 			<label for="nova-tarefa">Nova tarefa</label>
+			<!-- Campo de texto onde o usuário digita o nome da tarefa; 'required' torna o preenchimento obrigatório -->
 			<input id="nova-tarefa" name="tarefa" type="text" required>
-			<label for="tempo">Tempo</label>
-			<input id="tempo" name="tempo" type="text" required>
-			<button type="submit">Adicionar</button>
-			<button type="button" id="exclude">Excluir</button>
 
+			<!-- Rótulo do campo de tempo estimado -->
+			<label for="tempo">Tempo</label>
+			<!-- Campo para inserir o tempo estimado da tarefa -->
+			<input id="tempo" name="tempo" type="text" required>
+
+			<!-- Botão de submissão do formulário: dispara o evento 'submit' no formulário -->
+			<button type="submit">Adicionar</button>
+
+			<!-- 
+				Botão com type="button": não envia o formulário por padrão.
+				Possui um id="exclude" para podermos adicionar uma ação de clique específica via JavaScript.
+			-->
+			<button type="button" id="exclude">Excluir</button>
 		</form>
 
+		<!-- Exibição do contador total de tarefas; a tag <strong> com id="contador" é atualizada via JS -->
 		<p>Tarefas: <strong id="contador">0</strong></p>
+
+		<!-- 
+			Lista não ordenada (<ul>) inicialmente vazia.
+			O JavaScript irá criar e inserir os itens (<li>) dinamicamente aqui dentro.
+		-->
 		<ul id="lista-tarefas"></ul>
 	</main>
 </body>

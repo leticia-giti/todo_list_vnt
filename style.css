@@ -3,145 +3,189 @@
   Compatível com o HTML da Aula 07/08.
 */
 
+/* 
+  :root é uma pseudo-classe que representa a raiz do documento (a tag <html>).
+  É o melhor lugar para declarar variáveis CSS (Custom Properties), que começam com '--'.
+  Dessa forma, qualquer seletor no documento pode acessar e reutilizar essas cores e valores.
+*/
 :root {
-	--cor-fundo: #f4f7fb;
-	--cor-cartao: #ffffff;
-	--cor-principal: #635bff;
-	--cor-principal-hover: #4f46e5;
-	--cor-texto: #202235;
-	--cor-texto-secundario: #6b7280;
-	--cor-borda: #dfe3ec;
-	--cor-sucesso: #16835b;
-	--sombra: 0 14px 35px rgba(33, 43, 77, 0.12);
+	--cor-fundo: #0f172a;            /* Cor de fundo suave da página */
+	--cor-cartao: 1e293b;           /* Fundo branco do container principal */
+	--cor-principal: #38bdf8;        /* Roxo/índigo de destaque principal (botões, títulos, bordas) */
+	--cor-principal-hover: #0ea5e9;  /* Tom mais escuro para quando o mouse passar por cima do botão */
+	--cor-texto: #050505;            /* Cor de texto escura de alto contraste para leitura confortável */
+	--cor-texto-secundario: #6c8cba; /* Tom cinza para legendas, placeholders e mensagens secundárias */
+	--cor-borda: #334155;            /* Cinza claro para linhas divisórias e bordas de inputs */
+	--cor-sucesso: #4ade80;          /* Verde usado para indicar itens concluídos ou sucesso */
+	--sombra: 0 14px 35px rgba(0, 0, 0, 0.45); /* Sombra suave para dar profundidade ao cartão */
 }
 
+/* 
+  O seletor universal '*' seleciona todos os elementos da página.
+  'box-sizing: border-box' garante que o espaçamento interno (padding) e a borda (border)
+  sejam calculados DENTRO da largura (width) e altura (height) definidas, evitando que
+  os elementos estourem o tamanho esperado na tela.
+*/
 * {
 	box-sizing: border-box;
 }
 
+/* Estilos globais aplicados ao corpo inteiro da página */
 body {
-	margin: 0;
-	min-height: 100vh;
-	display: grid;
-	place-items: center;
-	padding: 24px;
-	background: linear-gradient(135deg, #e9e7ff, var(--cor-fundo));
-	color: var(--cor-texto);
-	font-family: Arial, Helvetica, sans-serif;
+	margin: 0;                     /* Remove a margem padrão que os navegadores colocam por padrão */
+	min-height: 100vh;             /* Garante que o body ocupe no mínimo 100% da altura da tela visível */
+	display: grid;                 /* Usa CSS Grid para facilitar o alinhamento */
+	place-items: center;           /* Centraliza o conteúdo perfeitamente tanto na horizontal quanto na vertical */
+	padding: 24px;                 /* Cria um espaçamento em volta para não colar nas bordas da janela */
+	background: linear-gradient(135deg, #e9e7ff, var(--cor-fundo)); /* Fundo com degradê diagonal sutil */
+	color: var(--cor-texto);       /* Define a cor de texto padrão usando a variável declarada no :root */
+	font-family: Arial, Helvetica, sans-serif; /* Define a família de fontes padrão da aplicação */
 }
 
+/* Container do aplicativo (o cartão central que envolve todo o conteúdo) */
 .app {
+	/* 
+	  'min(100%, 620px)' é uma função moderna do CSS:
+	  em telas grandes, o cartão terá no máximo 620px de largura;
+	  em telas menores que 620px (como celulares), ele se ajustará a 100% da tela.
+	*/
 	width: min(100%, 620px);
-	padding: 32px;
-	background: var(--cor-cartao);
-	border: 1px solid rgba(99, 91, 255, 0.08);
-	border-radius: 20px;
-	box-shadow: var(--sombra);
+	padding: 32px;                 /* Espaçamento interno entre o conteúdo e a borda do cartão */
+	background: var(--cor-cartao); /* Fundo branco do cartão */
+	border: 1px solid rgba(99, 91, 255, 0.08); /* Borda muito sutil com tom arroxeado quase transparente */
+	border-radius: 20px;           /* Arredonda os quatro cantos do cartão */
+	box-shadow: var(--sombra);     /* Aplica a sombra definida nas variáveis para efeito de relevo */
 }
 
+/* Título principal */
 h1 {
-	margin: 0 0 8px;
+	margin: 0 0 8px;               /* 0 no topo, 0 nas laterais e 8px de margem inferior */
+	/* 
+	  'clamp(min, ideal, max)' torna o tamanho da fonte fluído:
+	  o texto terá no mínimo 2rem, tentará ser 5% da largura da tela (5vw),
+	  mas nunca passará de 3rem.
+	*/
 	font-size: clamp(2rem, 5vw, 3rem);
-	line-height: 1.1;
-	color: var(--cor-principal);
+	line-height: 1.1;              /* Altura de linha compacta para títulos */
+	color: var(--cor-principal);   /* Cor roxa de destaque */
 }
 
+/* Subtítulo ou mensagem informativa abaixo do título */
 #mensagem {
-	margin: 0 0 28px;
-	color: var(--cor-texto-secundario);
+	margin: 0 0 28px;              /* Afasta o formulário para baixo */
+	color: var(--cor-texto-secundario); /* Cor cinza mais suave */
 	font-size: 1.05rem;
 }
 
+/* Formulário de adicionar tarefas */
 #form-tarefa {
-	display: grid;
-	gap: 8px;
-	margin-bottom: 22px;
+	display: grid;                 /* Organiza os campos do formulário em uma coluna */
+	gap: 8px;                      /* Espaçamento automático de 8px entre cada filho direto do form */
+	margin-bottom: 22px;           /* Distância entre o formulário e a lista abaixo dele */
 }
 
+/* Rótulos dos campos de texto (labels) */
 #form-tarefa label {
-	font-weight: 700;
+	font-weight: 700;              /* Deixa o texto da label em negrito (bold) */
 }
 
+/* Campo de entrada de texto da nova tarefa */
 #nova-tarefa {
-	width: 100%;
-	padding: 13px 14px;
-	border: 1px solid var(--cor-borda);
-	border-radius: 10px;
-	color: var(--cor-texto);
-	font: inherit;
-	outline: none;
-	transition: border-color 0.2s, box-shadow 0.2s;
+	width: 100%;                   /* Ocupa toda a largura disponível do formulário */
+	padding: 13px 14px;            /* Espaçamento interno para uma área de digitação confortável */
+	border: 1px solid var(--cor-borda); /* Borda cinza suave padrão */
+	border-radius: 10px;           /* Bordas arredondadas nos cantos */
+	color: var(--cor-texto);       /* Cor da letra ao digitar */
+	font: inherit;                 /* Herda o tamanho e família de fonte do elemento pai */
+	outline: none;                 /* Remove a borda azul padrão do navegador ao clicar */
+	transition: border-color 0.2s, box-shadow 0.2s; /* Animação suave de 0.2s ao focar no campo */
 }
 
+/* Efeito visual quando o usuário clica ou digita dentro do campo de texto (:focus) */
 #nova-tarefa:focus {
-	border-color: var(--cor-principal);
-	box-shadow: 0 0 0 3px rgba(99, 91, 255, 0.15);
+	border-color: var(--cor-principal); /* A borda ganha a cor principal roxa */
+	box-shadow: 0 0 0 3px rgba(99, 91, 255, 0.15); /* Cria um anel iluminado ao redor do campo */
 }
 
+/* Estilo geral para todos os botões */
 button {
-	width: fit-content;
+	width: fit-content;            /* O botão se ajusta exatamente ao tamanho do texto interno */
 	margin-top: 4px;
-	padding: 12px 18px;
-	border: 0;
-	border-radius: 10px;
-	background: var(--cor-principal);
-	color: #ffffff;
-	cursor: pointer;
-	font: inherit;
-	font-weight: 700;
-	transition: background 0.2s, transform 0.2s;
+	padding: 12px 18px;            /* Altura e largura internas do botão */
+	border: 0;                     /* Remove bordas nativas quadradas */
+	border-radius: 10px;           /* Cantos arredondados */
+	background: var(--cor-principal); /* Cor de fundo roxa */
+	color: #ffffff;                /* Texto branco com bom contraste */
+	cursor: pointer;               /* Transforma o cursor do mouse na mãozinha de clique */
+	font: inherit;                 /* Mantém a mesma fonte do restante da página */
+	font-weight: 700;              /* Texto em negrito */
+	transition: background 0.2s, transform 0.2s; /* Transição suave nas animações */
 }
 
+/* Efeito quando o usuário passa o mouse por cima do botão (:hover) */
 button:hover {
-	background: var(--cor-principal-hover);
-	transform: translateY(-1px);
+	background: var(--cor-principal-hover); /* Escurece a cor do botão */
+	transform: translateY(-1px);            /* Levanta o botão 1 pixel para simular efeito 3D flutuante */
 }
 
+/* Efeito no exato momento do clique no botão (:active) */
 button:active {
-	transform: translateY(0);
+	transform: translateY(0);               /* Retorna à posição original, simulando o aperto de uma tecla */
 }
 
+/* Número do contador de tarefas concluídas/pendentes */
 #contador {
-	color: var(--cor-sucesso);
+	color: var(--cor-sucesso);     /* Exibe o número em verde */
 }
 
+/* A lista não-ordenada (<ul>) que recebe os itens de tarefa */
 #lista-tarefas {
 	display: grid;
-	gap: 10px;
+	gap: 10px;                     /* Espaço de 10px entre cada item da lista */
 	margin: 12px 0 0;
-	padding: 0;
-	list-style: none;
+	padding: 0;                    /* Zera o padding padrão que navegadores colocam na tag <ul> */
+	list-style: none;              /* Remove as bolinhas pretas (bullets) padrão da lista */
 }
 
+/* 
+  Estado vazio (:empty) com pseudo-elemento (::before):
+  Quando a tag <ul> não possui nenhum elemento filho dentro (lista vazia),
+  o CSS gera automaticamente este bloco pontilhado com uma mensagem, sem precisar de JS!
+*/
 #lista-tarefas:empty::before {
 	content: "Nenhuma tarefa cadastrada ainda.";
 	display: block;
 	padding: 18px;
-	border: 1px dashed var(--cor-borda);
+	border: 1px dashed var(--cor-borda); /* Borda tracejada/pontilhada */
 	border-radius: 10px;
 	color: var(--cor-texto-secundario);
 	text-align: center;
 }
 
+/* Cada item individual da lista (<li>) criado dinamicamente */
 #lista-tarefas li {
 	padding: 14px 16px;
-	border-left: 4px solid var(--cor-principal);
+	border-left: 4px solid var(--cor-principal); /* Faixa colorida roxa na lateral esquerda do cartão */
 	border-radius: 8px;
-	background: #f7f7ff;
+	background: #f7f7ff;          /* Fundo ligeiramente lilás bem claro para destacar do cartão */
 	font-size: 1rem;
 }
 
+/* 
+  Regras de Responsividade (Media Query):
+  Aplicadas quando a tela tem no máximo 520px de largura (telas de smartphones).
+*/
 @media (max-width: 520px) {
 	body {
-		padding: 14px;
+		padding: 14px;             /* Reduz o padding externo para economizar espaço na tela pequena */
 	}
 
 	.app {
-		padding: 24px 18px;
+		padding: 24px 18px;        /* Reduz o padding interno do cartão */
 		border-radius: 14px;
 	}
 
 	button {
-		width: 100%;
+		width: 100%;               /* Em telas móveis, os botões ocupam a largura inteira para facilitar o toque */
 	}
 }
