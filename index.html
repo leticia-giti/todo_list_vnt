@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Minha To-do List</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="script.js" defer></script>
+</head>
+
+<body>
+	<main class="app">
+		<h1>Minha To-do List</h1>
+		<p id="mensagem">Organize uma tarefa por vez.</p>
+
+		<form id="form-tarefa">
+			<label for="nova-tarefa">Nova tarefa</label>
+			<input id="nova-tarefa" name="tarefa" type="text" required>
+			<label for="tempo">Tempo</label>
+			<input id="tempo" name="tempo" type="text" required>
+			<button type="submit">Adicionar</button>
+			<button type="button" id="exclude">Excluir</button>
+
+		</form>
+
+		<p>Tarefas: <strong id="contador">0</strong></p>
+		<ul id="lista-tarefas"></ul>
+	</main>
+</body>
+
+</html>
