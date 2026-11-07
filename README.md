@@ -4,14 +4,15 @@ Aplicação web de gerenciamento de tarefas desenvolvida com **HTML, CSS e JavaS
 
 ## Sobre o projeto
 
-O To-Do List permite o gerenciamento de tarefas por meio de uma interface simples e objetiva.
+O To-Do List permite o gerenciamento de tarefas por meio de uma interface simples e objetiva. Recentemente, o projeto ganhou uma nova estrutura de navegação com múltiplas seções (telas) e rolagem suave, melhorando a experiência do usuário e a organização do conteúdo.
 
 O projeto está sendo desenvolvido de forma incremental, acompanhando o aprendizado das tecnologias utilizadas e incorporando novas funcionalidades conforme o desenvolvimento avança.
 
 ## Funcionalidades
 
-- [ ] Adicionar tarefas
-- [ ] Listar tarefas
+- [x] Adicionar tarefas _(se já estiver funcionando no seu JS)_
+- [x] Listar tarefas _(se já estiver funcionando no seu JS)_
+- [x] Navegação entre seções com rolagem suave
 - [ ] Marcar tarefas como concluídas
 - [ ] Remover tarefas
 - [ ] Editar tarefas
@@ -33,6 +34,9 @@ Durante o desenvolvimento, serão aplicados conceitos como:
 - Estruturação semântica com HTML
 - Seletores e estilização com CSS
 - Layout e responsividade
+- **Posicionamento de elementos (position: fixed)**
+- **Links de âncora (href="#id")**
+- **Rolagem suave (scroll-behavior: smooth)**
 - JavaScript e lógica de programação
 - Manipulação do DOM
 - Manipulação de eventos
@@ -49,46 +53,3 @@ todo_list_vnt/
 ├── script.js
 └── README.md
 ```
-
-A estrutura poderá ser modificada conforme novas funcionalidades e necessidades do projeto forem adicionadas.
-
-## Como executar
-
-Clone o repositório:
-
-```bash
-git clone https://github.com/leticia-giti/todo_list_vnt.git
-```
-
-Acesse o diretório:
-
-```bash
-cd todo_list_vnt
-```
-
-Abra o arquivo `index.html` em um navegador.
-
-Também é possível utilizar uma extensão como o **Live Server** no Visual Studio Code para executar a aplicação durante o desenvolvimento.
-
-## Desenvolvimento
-
-O projeto está sendo desenvolvido como uma atividade prática para estudar e aplicar conceitos de desenvolvimento web.
-
-Novas funcionalidades, melhorias na interface e refatorações serão incorporadas ao longo do desenvolvimento.
-
-## Próximos passos
-
-- Implementar o cadastro de tarefas
-- Implementar a conclusão de tarefas
-- Implementar a remoção de tarefas
-- Melhorar a organização do código JavaScript
-- Desenvolver uma interface responsiva
-- Implementar filtros
-- Adicionar persistência com `localStorage`
-- Revisar acessibilidade e semântica da aplicação
-
-## Autora
-
-**Leticia, Lucas**
-
-GitHub: [leticia-giti](https://github.com/leticia-giti)

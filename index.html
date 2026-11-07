@@ -1,71 +1,80 @@
 <!doctype html>
-<!-- Define o idioma principal da página como Português do Brasil para navegadores e leitores de tela -->
 <html lang="pt-BR">
 
 <head>
-	<!-- Define a codificação de caracteres como UTF-8 (permite acentos, emojis e caracteres especiais) -->
 	<meta charset="UTF-8">
-
-	<!-- Configura a responsividade para dispositivos móveis (ajusta a escala para a largura da tela) -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<!-- Título que aparece na aba do navegador -->
-	<title>Minha To-do List</title>
-
-	<!-- Importa o arquivo de estilos CSS externo -->
+	<title>Minha Lista de Tarefas</title>
 	<link rel="stylesheet" href="style.css">
-
-	<!-- 
-		Importa o arquivo JavaScript externo.
-		O atributo 'defer' faz o script ser executado somente após todo o HTML ser processado pelo navegador,
-		garantindo que os elementos HTML já existam quando o JS tentar manipulá-los.
-	-->
 	<script src="script.js" defer></script>
 </head>
 
 <body>
-	<!-- Tag semântica <main> que representa o conteúdo principal da página -->
-	<main class="app">
-		<!-- Título principal da aplicação -->
-		<h1>Minha To-do List</h1>
+	<!-- 
+	  BARRA DE NAVEGAÇÃO (NAVBAR)
+	  Fica fixa no topo da tela (configurado no CSS).
+	  Os links (a) usam o atributo 'href="#id-da-secao"' para criar âncoras.
+	  Quando clicados, a página rola suavemente até a seção correspondente.
+	-->
+	<header class="navbar">
+		<div class="logo">To-Do List</div>
+		<nav>
+			<a href="#inicio">Início</a>
+			<a href="#tarefas">Tarefas</a>
+			<a href="#sobre">Sobre</a>
+		</nav>
+	</header>
 
-		<!-- Parágrafo com id para permitir que o JavaScript altere seu texto dinamicamente -->
-		<p id="mensagem">Organize uma tarefa por vez.</p>
+	<!-- 
+	  SEÇÃO 1: INÍCIO (A primeira tela que o usuário vê)
+	  O 'id="inicio"' é o destino do primeiro link da navbar.
+	-->
+	<section id="inicio" class="secao">
+		<div class="conteudo-secao">
+			<h1>Bem-vindo(a)!</h1>
+			<p>Organize seu dia de forma simples e eficiente.</p>
+			<!-- Botão que também funciona como âncora, levando o usuário para a seção de tarefas -->
+			<a href="#tarefas" class="btn-navegacao">Ir para as Tarefas</a>
+		</div>
+	</section>
 
-		<!-- 
-			Formulário para entrada de dados.
-			O formulário agrupa os campos e permite capturar o evento de "submit" (envio) pelo teclado (Enter) ou botão.
-		-->
-		<form id="form-tarefa">
-			<!-- 'for="nova-tarefa"' conecta a label ao input com id="nova-tarefa", melhorando a acessibilidade -->
-			<label for="nova-tarefa">Nova tarefa</label>
-			<!-- Campo de texto onde o usuário digita o nome da tarefa; 'required' torna o preenchimento obrigatório -->
-			<input id="nova-tarefa" name="tarefa" type="text" required>
+	<!-- 
+	  SEÇÃO 2: TAREFAS (Aqui está o seu app original)
+	  O 'id="tarefas"' é o destino do segundo link da navbar.
+	-->
+	<section id="tarefas" class="secao">
+		<!-- A tag <main> envolve o conteúdo principal da aplicação -->
+		<main class="app">
+			<h2>Minha Lista de Tarefas</h2>
 
-			<!-- Rótulo do campo de tempo estimado -->
-			<label for="tempo">Tempo</label>
-			<!-- Campo para inserir o tempo estimado da tarefa -->
-			<input id="tempo" name="tempo" type="text" required>
+			<p id="mensagem">Organize uma tarefa por vez.</p>
 
-			<!-- Botão de submissão do formulário: dispara o evento 'submit' no formulário -->
-			<button type="submit">Adicionar</button>
+			<form id="form-tarefa">
+				<label for="nova-tarefa">Nova tarefa</label>
+				<input id="nova-tarefa" name="tarefa" type="text" required>
 
-			<!-- 
-				Botão com type="button": não envia o formulário por padrão.
-				Possui um id="exclude" para podermos adicionar uma ação de clique específica via JavaScript.
-			-->
-			<button type="button" id="exclude">Excluir</button>
-		</form>
+				<label for="tempo">Tempo</label>
+				<input id="tempo" name="tempo" type="text" required>
 
-		<!-- Exibição do contador total de tarefas; a tag <strong> com id="contador" é atualizada via JS -->
-		<p>Tarefas: <strong id="contador">0</strong></p>
+				<button type="submit">Adicionar</button>
+				<button type="button" id="exclude">Excluir</button>
+			</form>
 
-		<!-- 
-			Lista não ordenada (<ul>) inicialmente vazia.
-			O JavaScript irá criar e inserir os itens (<li>) dinamicamente aqui dentro.
-		-->
-		<ul id="lista-tarefas"></ul>
-	</main>
+			<p>Tarefas: <strong id="contador">0</strong></p>
+			<ul id="lista-tarefas"></ul>
+		</main>
+	</section>
+
+	<!-- 
+	  SEÇÃO 3: SOBRE (Uma tela extra para você adicionar informações)
+	  O 'id="sobre"' é o destino do terceiro link da navbar.
+	-->
+	<section id="sobre" class="secao">
+		<div class="conteudo-secao">
+			<h2>Sobre o Projeto</h2>
+			<p>Este é um projeto de estudos desenvolvido com HTML, CSS e JavaScript. O objetivo é praticar a criação de interfaces amigáveis e navegação entre seções.</p>
+		</div>
+	</section>
+
 </body>
-
 </html>
