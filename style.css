@@ -1,4 +1,4 @@
-/* --- CONFIGURAÇÕES GLOBAIS --- */
+
 :root {
     --cor-fundo: #fff7f8;
     --cor-cartao: #ffffff;
@@ -16,46 +16,31 @@
     box-sizing: border-box;
 }
 
-/* 
-  ROLAGEM SUAVE (SMOOTH SCROLL)
-  Essa regra no <html> faz com que, ao clicar em um link âncora (href="#id"),
-  a página role deslizando suavemente até o destino, em vez de dar um "salto" seco.
-*/
 html {
     scroll-behavior: smooth;
 }
 
-/* 
-  ALTERAÇÃO NO BODY:
-  Removemos o 'display: grid' e o 'place-items: center' porque agora o site tem rolagem.
-  O body agora organiza as seções de cima para baixo (block).
-  Adicionamos um 'padding-top' para que a primeira seção não fique escondida atrás da navbar fixa.
-*/
+
 body {
     margin: 0;
     background: linear-gradient(135deg, #e9e7ff, var(--cor-fundo));
     color: var(--cor-texto);
     font-family: Arial, Helvetica, sans-serif;
-    padding-top: 70px; /* Compensa a altura da navbar fixa */
+    padding-top: 70px; 
 }
 
-/* --- ESTILOS DA NAVBAR (BARRA DE NAVEGAÇÃO) --- */
 .navbar {
-    /* 
-      position: fixed -> Fixa o elemento na tela, independente da rolagem.
-      top: 0 -> Cola no topo. left: 0 -> Cola na esquerda.
-    */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 70px; /* Altura fixa para sabermos quanto de padding dar no body */
+    height: 70px;
     background: var(--gradiente-principal);
-    display: flex; /* Usamos flexbox para alinhar o logo e os links */
-    justify-content: space-between; /* Espaça os itens nas pontas */
-    align-items: center; /* Centraliza verticalmente */
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
     padding: 0 40px;
-    z-index: 1000; /* Garante que a navbar fique POR CIMA de tudo que rolar na tela */
+    z-index: 1000; 
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
@@ -67,39 +52,25 @@ body {
 
 .navbar nav a {
     color: white;
-    text-decoration: none; /* Remove o sublinhado padrão dos links */
+    text-decoration: none; 
     margin-left: 20px;
     font-weight: bold;
     transition: opacity 0.3s;
 }
 
 .navbar nav a:hover {
-    opacity: 0.8; /* Efeito de transparência ao passar o mouse */
+    opacity: 0.8; 
 }
 
-/* --- ESTILOS DAS SEÇÕES --- */
 .secao {
-    /* 
-      min-height: 100vh -> Faz cada seção ocupar no mínimo a altura inteira da tela visível.
-      Isso é o que cria a sensação de "telas" separadas que você pediu.
-    */
     min-height: 100vh; 
     padding: 40px 20px;
-    
-    /* 
-      scroll-margin-top -> Muito importante!
-      Quando o link da navbar é clicado, ele rola até a seção.
-      Esse comando faz a rolagem parar um pouco antes do topo da seção,
-      para o título não ficar escondido embaixo da navbar fixa.
-    */
     scroll-margin-top: 70px; 
-    
-    display: flex; /* Flexbox para centralizar o conteúdo dentro de cada seção */
+    display: flex; 
     justify-content: center;
     align-items: center;
 }
 
-/* Container para o texto das seções Início e Sobre */
 .conteudo-secao {
     text-align: center;
     max-width: 600px;
@@ -118,7 +89,6 @@ body {
     margin-bottom: 24px;
 }
 
-/* Estilo para o botão que fica na seção "Início" */
 .btn-navegacao {
     display: inline-block;
     background-color: var(--cor-principal);
@@ -135,7 +105,6 @@ body {
     transform: translateY(-2px);
 }
 
-/* --- ESTILOS DO SEU APP (MANTIDOS E AJUSTADOS) --- */
 .app {
     width: min(100%, 620px);
     padding: 32px;
@@ -240,10 +209,9 @@ button:active {
     font-size: 1rem;
 }
 
-/* --- RESPONSIVIDADE (TELAS PEQUENAS) --- */
 @media (max-width: 520px) {
     body {
-        padding-top: 60px; /* Navbar menor no celular */
+        padding-top: 60px;
     }
 
     .navbar {
@@ -267,5 +235,100 @@ button:active {
 
     button {
         width: 100%;
+    }
+}
+#lista-tarefas li {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 14px 16px;
+    border-left: 4px solid var(--cor-principal);
+    border-radius: 8px;
+    background: #f7f7ff;
+    font-size: 1rem;
+    width: 100%; 
+    box-sizing: border-box;
+}
+
+#lista-tarefas li span {
+    flex: 1; 
+    margin-right: 15px; 
+    word-break: break-word; 
+}
+
+#lista-tarefas .btn-lixeira {
+    background: transparent !important; 
+    border: none !important;            
+    box-shadow: none !important;        
+    padding: 0 !important;             
+    width: auto !important;            
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#lista-tarefas .btn-lixeira:hover {
+    transform: scale(1.2);
+}
+
+.rodape {
+    background-color: var(--cor-cartao); 
+    padding: 40px;
+    border-top: 1px solid var(--cor-borda); 
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.contato-info h2 {
+    color: var(--cor-principal);
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 1.8rem;
+}
+
+.contato-info p {
+    color: var(--cor-texto-secundario);
+    margin-bottom: 16px;
+}
+
+.lista-emails {
+    display: flex;
+    gap: 20px;
+}
+
+.lista-emails a {
+    color: var(--cor-texto);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.lista-emails a:hover {
+    color: var(--cor-principal);
+}
+
+.btn-github {
+    color: #333333; 
+    display: inline-block;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.btn-github:hover {
+    color: var(--cor-principal); 
+    transform: scale(1.1) translateY(-3px); 
+}
+
+@media (max-width: 520px) {
+    .rodape {
+        flex-direction: column; 
+        text-align: center;
+        gap: 30px;
+    }
+    
+    .lista-emails {
+        justify-content: center;
     }
 }

@@ -10,14 +10,8 @@
 </head>
 
 <body>
-	<!-- 
-	  BARRA DE NAVEGAÇÃO (NAVBAR)
-	  Fica fixa no topo da tela (configurado no CSS).
-	  Os links (a) usam o atributo 'href="#id-da-secao"' para criar âncoras.
-	  Quando clicados, a página rola suavemente até a seção correspondente.
-	-->
 	<header class="navbar">
-		<div class="logo">To-Do List</div>
+		<div class="logo">iNotes</div>
 		<nav>
 			<a href="#inicio">Início</a>
 			<a href="#tarefas">Tarefas</a>
@@ -25,25 +19,18 @@
 		</nav>
 	</header>
 
-	<!-- 
-	  SEÇÃO 1: INÍCIO (A primeira tela que o usuário vê)
-	  O 'id="inicio"' é o destino do primeiro link da navbar.
-	-->
+	
 	<section id="inicio" class="secao">
 		<div class="conteudo-secao">
 			<h1>Bem-vindo(a)!</h1>
 			<p>Organize seu dia de forma simples e eficiente.</p>
-			<!-- Botão que também funciona como âncora, levando o usuário para a seção de tarefas -->
 			<a href="#tarefas" class="btn-navegacao">Ir para as Tarefas</a>
 		</div>
 	</section>
 
-	<!-- 
-	  SEÇÃO 2: TAREFAS (Aqui está o seu app original)
-	  O 'id="tarefas"' é o destino do segundo link da navbar.
-	-->
+	
 	<section id="tarefas" class="secao">
-		<!-- A tag <main> envolve o conteúdo principal da aplicação -->
+		
 		<main class="app">
 			<h2>Minha Lista de Tarefas</h2>
 
@@ -65,16 +52,40 @@
 		</main>
 	</section>
 
-	<!-- 
-	  SEÇÃO 3: SOBRE (Uma tela extra para você adicionar informações)
-	  O 'id="sobre"' é o destino do terceiro link da navbar.
-	-->
+
 	<section id="sobre" class="secao">
 		<div class="conteudo-secao">
 			<h2>Sobre o Projeto</h2>
 			<p>Este é um projeto de estudos desenvolvido com HTML, CSS e JavaScript. O objetivo é praticar a criação de interfaces amigáveis e navegação entre seções.</p>
 		</div>
 	</section>
+	    
+    <footer id="contato" class="rodape">
+        
+        
+        <div class="contato-info">
+            <h2>Contato</h2>
+            <p>Fale com os desenvolvedores do projeto:</p>
+            
+            <div class="lista-emails">
+               
+                <a href="mailto:leticia.souza@icomp.ufam.edu.br">✉️ Letícia Souza</a>
+                <a href="mailto:lucas.nascimento@icomp.ufam.edu.br">✉️ Lucas Nascimento</a>
+            </div>
+        </div>
+
+       
+        <div class="redes-sociais">
+            
+            <a href="https://github.com/leticia-giti/todo_list_vnt" target="_blank" class="btn-github" title="Ver projeto no GitHub">
+               
+                <svg viewBox="0 0 16 16" width="30" height="30" fill="currentColor">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                </svg>
+            </a>
+        </div>
+
+    </footer>
 
 </body>
 </html>
