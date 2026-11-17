@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Minha Lista de Tarefas</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="script.js" defer></script>
+</head>
+
+<body>
+	<header class="navbar">
+		<div class="logo">iNotes</div>
+		<nav>
+			<a href="#inicio">Início</a>
+			<a href="#tarefas">Tarefas</a>
+			<a href="#sobre">Sobre</a>
+		</nav>
+	</header>
+
+	
+	<section id="inicio" class="secao">
+		<div class="conteudo-secao">
+			<h1>Bem-vindo(a)!</h1>
+			<p>Organize seu dia de forma simples e eficiente.</p>
+			<a href="#tarefas" class="btn-navegacao">Ir para as Tarefas</a>
+		</div>
+	</section>
+
+	
+	<section id="tarefas" class="secao">
+		
+		<main class="app">
+			<h2>Minha Lista de Tarefas</h2>
+
+			<p id="mensagem" role="status" aria-live="polite">Organize uma tarefa por vez.</p>
+
+			<form id="form-tarefa">
+				<label for="nova-tarefa">Nova tarefa</label>
+				<input id="nova-tarefa" name="tarefa" type="text" maxlength="160" required>
+
+				<fieldset class="tempo-grupo">
+					<legend>Tempo previsto (opcional)</legend>
+					<div class="tempo-campos">
+						<div><label for="tempo-horas">Horas</label><input id="tempo-horas" name="tempo-horas" type="number" min="0" max="168" step="1" placeholder="0" inputmode="numeric"></div>
+						<div><label for="tempo-minutos">Minutos</label><input id="tempo-minutos" name="tempo-minutos" type="number" min="0" max="59" step="1" placeholder="0" inputmode="numeric"></div>
+					</div>
+				</fieldset>
+
+				<label for="prioridade-manual">Prioridade</label>
+				<select id="prioridade-manual"><option value="media">Média</option><option value="alta">Alta</option><option value="baixa">Baixa</option></select>
+
+				<label for="categoria-manual">Categoria</label>
+				<select id="categoria-manual"><option value="pessoal">Pessoal</option><option value="estudos">Estudos</option><option value="trabalho">Trabalho</option><option value="saude">Saúde</option><option value="casa">Casa</option><option value="compras">Compras</option><option value="outros">Outros</option></select>
+
+				<button type="submit">Adicionar</button>
+				<button type="button" id="exclude">Excluir</button>
+			</form>
+
+			<p>Tarefas: <strong id="contador">0</strong> · Pendentes: <strong id="pendentes">0</strong></p>
+            <div class="filtros" aria-label="Filtrar tarefas"><button type="button" class="filtro ativo" data-filtro="todas">Todas</button><button type="button" class="filtro" data-filtro="alta">Alta</button><button type="button" class="filtro" data-filtro="media">Média</button><button type="button" class="filtro" data-filtro="baixa">Baixa</button></div>
+			<ul id="lista-tarefas"></ul>
+		</main>
+	</section>
+
+
+	<section id="sobre" class="secao">
+		<div class="conteudo-secao">
+			<h2>Sobre o Projeto</h2>
+			<p>Este é um projeto de estudos desenvolvido com HTML, CSS e JavaScript. O objetivo é praticar a criação de interfaces amigáveis e navegação entre seções.</p>
+		</div>
+	</section>
+	    
+
+
+    <!-- Edição de tarefas existentes, inclusive as criadas pela IA -->
+    <dialog id="dialog-editar" class="dialog-editar" aria-labelledby="titulo-editar">
+      <form id="form-editar">
+        <h3 id="titulo-editar">Editar tarefa</h3>
+        <label for="editar-titulo">Nome da tarefa</label>
+        <input id="editar-titulo" type="text" maxlength="160" required>
+        <fieldset class="tempo-grupo">
+          <legend>Tempo previsto (opcional)</legend>
+          <div class="tempo-campos">
+            <div><label for="editar-horas">Horas</label><input id="editar-horas" type="number" min="0" max="168" step="1" placeholder="0"></div>
+            <div><label for="editar-minutos">Minutos</label><input id="editar-minutos" type="number" min="0" max="59" step="1" placeholder="0"></div>
+          </div>
+        </fieldset>
+        <label for="editar-prioridade">Prioridade</label>
+        <select id="editar-prioridade"><option value="media">Média</option><option value="alta">Alta</option><option value="baixa">Baixa</option></select>
+        <label for="editar-categoria">Categoria</label>
+        <select id="editar-categoria"><option value="pessoal">Pessoal</option><option value="estudos">Estudos</option><option value="trabalho">Trabalho</option><option value="saude">Saúde</option><option value="casa">Casa</option><option value="compras">Compras</option><option value="outros">Outros</option></select>
+        <p id="erro-editar" class="erro-editar" role="alert"></p>
+        <div class="editar-acoes">
+          <button type="button" id="cancelar-edicao" class="btn-secundario">Cancelar</button>
+          <button type="submit">Salvar alterações</button>
+        </div>
+      </form>
+    </dialog>
+
+    <!-- Assistente secundário: fixo no canto direito, sem ocupar o formulário principal -->
+    <aside class="assistente" aria-label="Assistente de tarefas com IA">
+      <button id="abrir-ia" class="assistente-atalho" type="button" aria-expanded="false" aria-controls="painel-ia">✦ <span>Assistente IA</span></button>
+      <section id="painel-ia" class="assistente-painel" hidden aria-labelledby="titulo-ia">
+        <div class="assistente-cabecalho"><div><strong id="titulo-ia">✦ iNotes AI</strong><small>Organização de tarefas</small></div><button type="button" id="fechar-ia" class="assistente-fechar" aria-label="Fechar assistente">×</button></div>
+        <div class="assistente-conteudo">
+          <p class="assistente-ajuda">Descreva suas tarefas. Sugestões de prioridade e duração serão atribuidas automaticamente quando não informados.</p>
+          <label for="texto-ia">Seus compromissos</label>
+          <textarea id="texto-ia" rows="4" maxlength="4000" placeholder="Ex.: Aula Descomplica VNT, Estudar programação e terminar o TCC"></textarea>
+          <button type="button" id="organizar-ia">Organizar com IA</button>
+          <p id="status-ia" role="status" aria-live="polite"></p>
+          <div id="resultado-ia" hidden><h4>Revise as sugestões</h4><p id="pendencias-ia"></p><div id="previa-ia"></div><button type="button" id="confirmar-ia">Adicionar selecionadas</button><button type="button" id="cancelar-ia" class="btn-secundario">Cancelar</button></div>
+        </div>
+      </section>
+    </aside>
+
+    <footer id="contato" class="rodape">
+        
+        
+        <div class="contato-info">
+            <h2>Contato</h2>
+            <p>Fale com os desenvolvedores do projeto:</p>
+            
+            <div class="lista-emails">
+               
+                <a href="mailto:leticia.souza@icomp.ufam.edu.br">✉️ Letícia Souza</a>
+                <a href="mailto:lucas.nascimento@icomp.ufam.edu.br">✉️ Lucas Nascimento</a>
+            </div>
+        </div>
+
+       
+        <div class="redes-sociais">
+            
+            <a href="https://github.com/leticia-giti/todo_list_vnt" target="_blank" class="btn-github" title="Ver projeto no GitHub">
+               
+                <svg viewBox="0 0 16 16" width="30" height="30" fill="currentColor">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                </svg>
+            </a>
+        </div>
+
+    </footer>
+
+</body>
+</html>

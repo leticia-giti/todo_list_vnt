@@ -332,3 +332,66 @@ button:active {
         justify-content: center;
     }
 }
+/* Campos adicionais do cadastro manual */
+#prioridade-manual,#categoria-manual {width:100%;padding:13px 14px;border:1px solid var(--cor-borda);border-radius:10px;background:white;font:inherit;color:var(--cor-texto)}
+#form-tarefa input[type=number] {width:100%;padding:13px 14px;border:1px solid var(--cor-borda);border-radius:10px;font:inherit}
+.filtros {display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.filtro {padding:8px 12px;background:#fce9ef;color:#8d3551;font-size:.85rem}
+.filtro.ativo {background:var(--cor-principal);color:white}
+.item-tarefa .detalhes-tarefa {min-width:0;flex:1;display:flex;flex-direction:column;gap:5px}
+.item-tarefa .titulo-tarefa {background:none;color:var(--cor-texto);padding:0;border-radius:0;text-align:left;font-weight:600;overflow-wrap:anywhere}
+.item-tarefa .titulo-tarefa:hover {background:none;text-decoration:underline}
+.item-tarefa small {font-size:.8rem;color:#666;line-height:1.4}
+.item-tarefa.prioridade-alta {border-left-color:#e55a5a !important}
+.item-tarefa.prioridade-media {border-left-color:#e6a22b !important}
+.item-tarefa.prioridade-baixa {border-left-color:#48b987 !important}
+.item-tarefa.concluida .titulo-tarefa {text-decoration:line-through;opacity:.6}
+/* IA flutuante, secundária, sem mudar a estrutura da página original */
+.assistente {position:fixed;right:22px;bottom:22px;z-index:1200;font-family:Arial,Helvetica,sans-serif}
+.assistente-atalho {box-shadow:0 8px 28px #ba46635c;display:flex;align-items:center;gap:9px;font-weight:bold}
+.assistente-painel {position:absolute;right:0;bottom:62px;width:min(370px,calc(100vw - 24px));max-height:min(72vh,660px);background:white;border:1px solid var(--cor-borda);border-radius:18px;box-shadow:0 14px 50px #54253838;overflow:hidden}
+.assistente-painel[hidden],#resultado-ia[hidden] {display:none!important}
+.assistente-cabecalho {background:var(--gradiente-principal);color:white;display:flex;align-items:center;justify-content:space-between;padding:15px 18px}
+.assistente-cabecalho strong,.assistente-cabecalho small {display:block}
+.assistente-cabecalho small {font-size:.75rem;margin-top:4px}
+.assistente-fechar {background:transparent;padding:3px 9px;font-size:26px}
+.assistente-conteudo {padding:16px;overflow:auto;max-height:calc(min(72vh,660px) - 74px)}
+.assistente-ajuda {font-size:.87rem;color:#666;line-height:1.5;margin:0 0 12px}
+.assistente-conteudo label {display:block;font-weight:bold;font-size:.88rem;margin-bottom:6px}
+#texto-ia {width:100%;resize:vertical;min-height:100px;padding:10px;border:1px solid var(--cor-borda);border-radius:10px;font:inherit}
+#organizar-ia,#confirmar-ia {margin-top:10px;width:100%}
+#status-ia,#pendencias-ia {font-size:.85rem;line-height:1.5;color:#666;overflow-wrap:anywhere}
+#resultado-ia {border-top:1px solid var(--cor-borda);margin-top:12px;padding-top:12px}
+#resultado-ia h4 {margin:0 0 10px}
+.sugestao {display:flex!important;align-items:flex-start;gap:8px;padding:9px 0;border-bottom:1px solid #f4e5ea;font-weight:normal!important;line-height:1.4}
+.sugestao input {margin-top:3px;flex-shrink:0}
+.btn-secundario {background:#f2e6eb;color:#803f52;margin-top:7px}
+.btn-secundario:hover {background:#ebd9e0}
+@media(max-width:520px) {.assistente {right:12px;bottom:12px}.assistente-painel {bottom:60px;max-height:75vh}.assistente-conteudo {max-height:calc(75vh - 74px)}.item-tarefa .titulo-tarefa {width:auto}}
+
+/* Entrada amigável de duração: horas e minutos separados */
+.tempo-grupo { border: 1px solid var(--cor-borda); border-radius: 12px; padding: 12px; margin: 6px 0; min-width: 0; }
+.tempo-grupo legend { font-weight: 700; padding: 0 5px; }
+.tempo-campos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.tempo-campos label { display: block; margin-bottom: 6px; }
+#tempo-horas, #tempo-minutos { width: 100%; padding: 13px 14px; border: 1px solid var(--cor-borda); border-radius: 10px; font: inherit; }
+#tempo-horas:focus, #tempo-minutos:focus { outline: 2px solid var(--cor-principal); outline-offset: 1px; }
+
+/* Ações e janela de edição */
+.acoes-tarefa {display:flex;align-items:center;gap:8px;flex-shrink:0}
+#lista-tarefas .btn-editar {background:#fce9ef;color:#8d3551;border:0;border-radius:9px;padding:7px 10px;font-size:1.1rem;width:auto}
+#lista-tarefas .btn-editar:hover {background:#f8d3df}
+.dialog-editar {width:min(460px,calc(100vw - 28px));max-height:90vh;overflow-y:auto;border:1px solid var(--cor-borda);border-radius:18px;padding:24px;background:white;color:var(--cor-texto);box-shadow:0 20px 65px #54253855}
+.dialog-editar::backdrop {background:rgba(30,20,32,.55)}
+#form-editar {display:grid;gap:9px}
+#form-editar h3 {margin:0 0 8px;color:var(--cor-principal);font-size:1.5rem}
+#form-editar label {font-weight:700;font-size:.9rem}
+#form-editar input,#form-editar select {width:100%;min-width:0;padding:11px;border:1px solid var(--cor-borda);border-radius:9px;background:white;color:var(--cor-texto);font:inherit}
+#form-editar .tempo-grupo {margin:3px 0}
+.editar-data-hora {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.editar-data-hora>div {display:grid;gap:6px}
+.editar-acoes {display:flex;gap:10px;margin-top:6px}
+.editar-acoes button {flex:1;padding:12px 10px}
+.editar-acoes .btn-secundario {margin-top:0}
+.erro-editar {margin:0;color:#b42318;font-size:.85rem}
+@media(max-width:520px) {.dialog-editar {padding:18px}.editar-acoes {flex-direction:column}}
