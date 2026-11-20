@@ -332,6 +332,28 @@ button:active {
         justify-content: center;
     }
 }
+
+.campo-busca {
+  width: 100%;
+  padding: 13px 14px; /* Mesmo padding do seu input original */
+  margin-bottom: 20px;
+  border: 1px solid var(--cor-borda); /* Mesma borda cinza suave */
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--cor-texto);
+  background-color: #fff;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box;
+}
+
+.campo-busca:focus {
+  border-color: var(--cor-principal); 
+  /* Usei o mesmo RGBA do seu input original (#nova-tarefa:focus) para ficar idêntico */
+  box-shadow: 0 0 0 3px rgba(99, 91, 255, 0.15); 
+}
+
 /* Campos adicionais do cadastro manual */
 #prioridade-manual,#categoria-manual {width:100%;padding:13px 14px;border:1px solid var(--cor-borda);border-radius:10px;background:white;font:inherit;color:var(--cor-texto)}
 #form-tarefa input[type=number] {width:100%;padding:13px 14px;border:1px solid var(--cor-borda);border-radius:10px;font:inherit}

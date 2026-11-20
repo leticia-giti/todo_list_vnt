@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Minha Lista de Tarefas</title>
 	<link rel="stylesheet" href="style.css">
+	<script src="https://cdn.jsdelivr.net/npm/fuse.js@7.1.0"></script>
 	<script src="script.js" defer></script>
 </head>
 
@@ -60,6 +61,7 @@
 
 			<p>Tarefas: <strong id="contador">0</strong> · Pendentes: <strong id="pendentes">0</strong></p>
             <div class="filtros" aria-label="Filtrar tarefas"><button type="button" class="filtro ativo" data-filtro="todas">Todas</button><button type="button" class="filtro" data-filtro="alta">Alta</button><button type="button" class="filtro" data-filtro="media">Média</button><button type="button" class="filtro" data-filtro="baixa">Baixa</button></div>
+			<input type="text" id="campo-busca" placeholder="Buscar por tarefas" class="campo-busca">
 			<ul id="lista-tarefas"></ul>
 		</main>
 	</section>
@@ -74,7 +76,7 @@
 	    
 
 
-    <!-- Edição de tarefas existentes, inclusive as criadas pela IA -->
+    
     <dialog id="dialog-editar" class="dialog-editar" aria-labelledby="titulo-editar">
       <form id="form-editar">
         <h3 id="titulo-editar">Editar tarefa</h3>
@@ -99,7 +101,6 @@
       </form>
     </dialog>
 
-    <!-- Assistente secundário: fixo no canto direito, sem ocupar o formulário principal -->
     <aside class="assistente" aria-label="Assistente de tarefas com IA">
       <button id="abrir-ia" class="assistente-atalho" type="button" aria-expanded="false" aria-controls="painel-ia">✦ <span>Assistente IA</span></button>
       <section id="painel-ia" class="assistente-painel" hidden aria-labelledby="titulo-ia">
@@ -141,6 +142,5 @@
         </div>
 
     </footer>
-
 </body>
 </html>
